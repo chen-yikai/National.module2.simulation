@@ -38,17 +38,32 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
     val views = RemoteViews(context.packageName, R.layout.mad_notebook_widget)
-    val intent = Intent(context, MainActivity::class.java).apply {
 
+    val newNote = Intent(context, MainActivity::class.java).apply {
+        putExtra("note_action", "new")
     }
-    val pendingIntent = PendingIntent.getActivity(
+    val recentNote = Intent(context, MainActivity::class.java).apply {
+        putExtra("note_action", "recent")
+    }
+
+    val recentNotePendingIntent = PendingIntent.getActivity(
         context,
         0,
-        intent,
+        recentNote,
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
-    views.setOnClickPendingIntent(R.id.open_recent, pendingIntent)
+
+    val newNotePendingIntent = PendingIntent.getActivity(
+        context,
+        1,
+        newNote,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
+
+    views.setOnClickPendingIntent(R.id.open_recent, recentNotePendingIntent)
+
+    views.setOnClickPendingIntent(R.id.new_note, newNotePendingIntent)
+
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }

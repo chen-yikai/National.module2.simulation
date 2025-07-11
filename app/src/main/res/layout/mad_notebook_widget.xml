@@ -2,11 +2,25 @@
     style="@style/Widget.Nationalmodule2simulation.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:theme="@style/Theme.Nationalmodule2simulation.AppWidgetContainer">
 
-    <Button
-        android:id="@+id/open_recent"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="開啟最近開啟的筆記" />
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/new_note"
+            style="@android:style/Widget.Material.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新筆記" />
+
+        <Button
+            android:id="@+id/open_recent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="開啟最近開啟的筆記" />
+    </LinearLayout>
 </LinearLayout>
